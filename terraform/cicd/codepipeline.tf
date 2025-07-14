@@ -7,24 +7,25 @@ resource "aws_codepipeline" "dofs_pipeline" {
     type     = "S3"
   }
   stage {
-    name = "Source"
-    action {
-      name             = "Source"
-      category         = "Source"
-      owner            = "ThirdParty"
-      provider         = "GitHub"
-      version          = "1"
-      output_artifacts = ["source_output"]
-      configuration = {
-        Owner  = "Manju728"
-        Repo   = "dofs_project"
-        Branch = "main"
-      }
+  name = "Source"
+  action {
+    name             = "Source"
+    category         = "Source"
+    owner            = "ThirdParty"
+    provider         = "GitHub"
+    version          = "1"
+    output_artifacts = ["source_output"]
+    configuration = {
+      Owner      = "Manju728"
+      Repo       = "dofs_project"
+      Branch     = "main"
+      OAuthToken = var.github_oauth_token
     }
   }
+}
 
-  stage {
-    name = "Build"
+stage {
+  name = "Build"
     action {
       name             = "Build"
       category         = "Build"
@@ -63,4 +64,10 @@ resource "aws_iam_role_policy_attachment" "admin_role_codepipeline" {
 
 resource "aws_s3_bucket" "pipeline_bucket" {
     bucket = "dofs-pipeline-bucket"
+}
+
+variable "github_oauth_token" {
+  description = "GitHub OAuth token for CodePipeline"
+  type        = string
+  sensitive   = true
 }
