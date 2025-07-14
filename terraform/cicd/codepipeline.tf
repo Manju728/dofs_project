@@ -11,15 +11,14 @@ resource "aws_codepipeline" "dofs_pipeline" {
   action {
     name             = "Source"
     category         = "Source"
-    owner            = "ThirdParty"
-    provider         = "GitHub"
+    owner            = "AWS"
+    provider         = "CodeStarSourceConnection"
     version          = "1"
     output_artifacts = ["source_output"]
     configuration = {
-      Owner      = "Manju728"
-      Repo       = "dofs_project"
-      Branch     = "main"
-      OAuthToken = "{{resolve:secretsmanager:github_oauth_token:SecretString}}"
+      ConnectionArn = aws_codestarconnections_connection.github_connection.arn
+      FullRepositoryId = "Manju728/dofs_project"
+      BranchName = "main"
     }
   }
 }
@@ -40,6 +39,11 @@ stage {
     }
   }
 }
+resource "aws_codestarconnections_connection" "github_connection" {
+  name          = "my-github-connection"
+  provider_type = "GitHub"
+}
+
 
 resource "aws_iam_role" "codepipeline_role" {
   name = "codepipeline_role"

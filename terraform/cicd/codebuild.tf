@@ -14,9 +14,9 @@ resource "aws_codebuild_project" "terraform_build" {
     }
   }
   source {
-    type            = "CODEPIPELINE"
-    # location        = "https://github.com/test/dofs_project"
-    # buildspec       = "buildspec.yml"
+    type            = "GITHUB"
+    location        = "https://github.com/test/dofs_project"
+    buildspec       = "buildspec.yml"
   }
 }
 
