@@ -19,7 +19,7 @@ resource "aws_codepipeline" "dofs_pipeline" {
       Owner      = "Manju728"
       Repo       = "dofs_project"
       Branch     = "main"
-      OAuthToken = var.github_oauth_token
+      OAuthToken = "{{resolve:secretsmanager:github_oauth_token:SecretString}}"
     }
   }
 }
@@ -64,10 +64,4 @@ resource "aws_iam_role_policy_attachment" "admin_role_codepipeline" {
 
 resource "aws_s3_bucket" "pipeline_bucket" {
     bucket = "dofs-pipeline-bucket"
-}
-
-variable "github_oauth_token" {
-  description = "GitHub OAuth token for CodePipeline"
-  type        = string
-  sensitive   = true
 }

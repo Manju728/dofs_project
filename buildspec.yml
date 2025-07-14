@@ -10,7 +10,6 @@ phases:
     pre_build:
       commands:
         - echo "Using GitHub token from secret"
-        - export GITHUB_TOKEN=$GITHUB_OAUTH_TOKEN
   build:
     commands:
       - cd terraform
