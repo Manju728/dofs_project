@@ -6,7 +6,11 @@ phases:
       python: 3.9
     commands:
       - pip install --upgrade pip
-      - pip install -r requirements.txt || true
+      - pip install -r requirements.txt || true\
+    pre_build:
+      commands:
+        - echo "Using GitHub token from secret"
+        - export GITHUB_TOKEN=$GITHUB_OAUTH_TOKEN
   build:
     commands:
       - cd terraform
