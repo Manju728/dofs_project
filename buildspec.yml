@@ -6,7 +6,7 @@ phases:
       python: 3.9
     commands:
       - echo "Downloading Terraform..."
-      - rm -rf terraform terraform.zip           # <-- Add this line
+      - rm -rf terraform terraform.zip
       - curl -s -o terraform.zip https://releases.hashicorp.com/terraform/1.6.6/terraform_1.6.6_linux_amd64.zip
       - unzip -o terraform.zip                   
       - mv terraform /usr/local/bin/
@@ -21,6 +21,7 @@ phases:
 
   build:
     commands:
+      - ls -l
       - cd terraform
       - terraform init -backend-config=backend-config.hcl
       - terraform workspace select dev || terraform workspace new dev
