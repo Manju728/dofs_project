@@ -16,7 +16,7 @@ resource "aws_codebuild_project" "terraform_build" {
   source {
     type            = "GITHUB"
     location        = "https://github.com/Manju728/dofs_project"
-    buildspec       = "../buildspec.yml"
+    buildspec       = "buildspec.yml"
   }
 }
 
