@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.9
+    commands:
+      - pip install --upgrade pip
+      - pip install -r requirements.txt || true
+  build:
+    commands:
+      - cd terraform
+      - terraform init -backend-config=backend-config.hcl
+      - terraform workspace select dev || terraform workspace new dev
+      - terraform plan
+      - terraform apply -auto-approve
