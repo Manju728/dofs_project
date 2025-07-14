@@ -14,7 +14,6 @@ provider "aws" {
 }
 
 module "cicd" {
-  source = "cicd"
+  source = "./cicd"
 }
 
-#Placeholder for main.tf in dofs-project/terraform
