@@ -16,3 +16,9 @@ resource "aws_cloudwatch_metric_alarm" "dlq_depth" {
 resource "aws_sns_topic" "dlq_alert" {
   name = "dlq_alert"
 }
+
+resource "aws_sns_topic_subscription" "dlq_alert_email" {
+  topic_arn = aws_sns_topic.dlq_alert.arn
+  protocol  = "email"
+  endpoint  = "manjukolluri763@gmail.com"
+}
