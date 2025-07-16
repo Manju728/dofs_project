@@ -7,7 +7,8 @@ step_fn_arn = os.environ['STEP_FUNCTION_ARN']
 sfn = boto3.client('stepfunctions')
 
 def lambda_handler(event, context):
-    body = event
+    print(event)
+    body = json.loads(event["body"])
     order_id = str(uuid.uuid4())
     body['order_id'] = order_id
     response = sfn.start_execution(
