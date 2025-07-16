@@ -8,6 +8,16 @@ resource "aws_dynamodb_table" "orders" {
   }
 }
 
+resource "aws_dynamodb_table" "terraform-lock-table" {
+  name           = "terraform-lock-table"
+  hash_key       = "LockID"
+  billing_mode   = "PAY_PER_REQUEST"
+  attribute {
+    name = "LockID"
+    type = "S"
+  }
+}
+
 resource "aws_dynamodb_table" "failed_orders" {
   name           = "failed_orders"
   hash_key       = "order_id"
