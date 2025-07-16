@@ -21,7 +21,6 @@ phases:
 
   build:
     commands:
-      - ls -l
       - cd cloud_infra
       - terraform init -backend-config=backend-config.hcl
       - terraform workspace select dev || terraform workspace new dev
