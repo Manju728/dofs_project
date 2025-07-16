@@ -97,15 +97,3 @@ resource "aws_cloudwatch_log_group" "order_storage_log_group" {
   name              = "/aws/lambda/${aws_lambda_function.order_storage.function_name}"
   retention_in_days = 14
 }
-# output "api_handler_lambda" {
-#   value = aws_lambda_function.api_handler.arn
-# }
-# output "validator_lambda" {
-#   value = aws_lambda_function.validator.arn
-# }
-# output "order_storage_lambda" {
-#   value = aws_lambda_function.order_storage.arn
-# }
-# output "fulfill_order_lambda" {
-#   value = aws_lambda_function.fulfill_order.arn
-# }
