@@ -19,6 +19,7 @@ resource "aws_codepipeline" "dofs_pipeline" {
       ConnectionArn = aws_codestarconnections_connection.github_connection.arn
       FullRepositoryId = "Manju728/dofs_project"
       BranchName = "main"
+      DetectChanges = "true"
     }
   }
 }

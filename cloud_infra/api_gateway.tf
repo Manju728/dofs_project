@@ -36,6 +36,12 @@ resource "aws_lambda_permission" "apigw_lambda" {
 resource "aws_api_gateway_deployment" "deployment" {
   depends_on = [aws_api_gateway_integration.lambda]
   rest_api_id = aws_api_gateway_rest_api.orders_api.id
+  lifecycle {
+    create_before_destroy = true
+  }
+  triggers = {
+    always = timestamp()
+  }
 }
 
 resource "aws_api_gateway_stage" "dev" {
